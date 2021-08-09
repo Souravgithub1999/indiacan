@@ -201,6 +201,7 @@
 
                     </div>
                 </div>
+                <h6 id="test"></h6>
             </div>
         </div>
     </div>
@@ -244,6 +245,11 @@
         scanner.addListener('scan', function (content) {
 
             alert(content);
+            
+            let str = content;
+            var res = str.substring(0, 2);
+            var testdiv = document.getElementById("test");
+            testdiv.innerHTML = res;
 
             //window.location.href=content;
 
