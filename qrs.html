@@ -69,6 +69,11 @@
     background-color:#d90000;
   color:#fff;
 }
+.imagewala{
+    height: 100px;
+    width: 100px;
+    justify-items: center;
+}
 
 
 
@@ -201,7 +206,8 @@
 
                     </div>
                 </div>
-                <h6 id="test"></h6>
+                <h6 class="text-center mb-1 mt-1 fw-bolder imagewala" id="y"></h6>
+                <h6 id="test" class="fw-bold mb-1 mt-1 text-center"></h6>
             </div>
         </div>
     </div>
@@ -244,12 +250,22 @@
 
         scanner.addListener('scan', function (content) {
 
-            alert(content);
-            
+            //alert(content);
+
             let str = content;
             var res = str.substring(0, 2);
             var testdiv = document.getElementById("test");
-            testdiv.innerHTML = res;
+            var img = document.getElementById("y");
+            if(res == "PK"){
+
+            img.src="success.svg";
+            testdiv.innerHTML = "Certificate Successfully Verified";
+
+            } else{
+                testdiv.innerHTML = "This is Not a Proper Certificate Or Scan Properly"
+                img.src="exclamation.svg";
+                alert(content);
+            }
 
             //window.location.href=content;
 
