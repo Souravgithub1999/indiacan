@@ -72,7 +72,9 @@
 .imagewala{
     height: 100px;
     width: 100px;
-    justify-items: center;
+    align-content: center;
+    margin: auto;
+    display: none;
 }
 
 
@@ -206,7 +208,8 @@
 
                     </div>
                 </div>
-                <h6 class="text-center mb-1 mt-1 fw-bolder imagewala" id="y"></h6>
+                <img id="y" class="imagewala" src="success.svg" />
+                <img id="x" class="imagewala" src="exclamation.svg" />
                 <h6 id="test" class="fw-bold mb-1 mt-1 text-center"></h6>
             </div>
         </div>
@@ -255,15 +258,17 @@
             let str = content;
             var res = str.substring(0, 2);
             var testdiv = document.getElementById("test");
-            var img = document.getElementById("y");
+            
             if(res == "PK"){
 
-            img.src="success.svg";
+            document.getElementById("y").style.display = "block";
+            document.getElementById("x").style.display = "none";
             testdiv.innerHTML = "Certificate Successfully Verified";
 
             } else{
                 testdiv.innerHTML = "This is Not a Proper Certificate Or Scan Properly"
-                img.src="exclamation.svg";
+                document.getElementById("x").style.display = "block";
+                document.getElementById("y").style.display = "none";
                 alert(content);
             }
 
