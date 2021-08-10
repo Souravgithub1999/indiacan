@@ -15,7 +15,6 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.0.1/tailwind.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-	<link rel="stylesheet" href="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css">
     <!--========== CSS ==========-->
     <link rel="stylesheet" href="navbar.css">
 
@@ -79,256 +78,233 @@
 }
 /*Adding*/
 /** * Extracted from: SweetAlert * Modified by: Istiak Tridip */
- /*.success-checkmark {
-	 width: 80px;
-	 height: 115px;
-	 margin: 0 auto;
+ .success-checkmark {
+   width: 80px;
+   height: 115px;
+   margin: 0 auto;
 }
  .success-checkmark .check-icon {
-	 width: 80px;
-	 height: 80px;
-	 position: relative;
-	 border-radius: 50%;
-	 box-sizing: content-box;
-	 border: 4px solid #4caf50;
+   width: 80px;
+   height: 80px;
+   position: relative;
+   border-radius: 50%;
+   box-sizing: content-box;
+   border: 4px solid #4caf50;
 }
  .success-checkmark .check-icon::before {
-	 top: 3px;
-	 left: -2px;
-	 width: 30px;
-	 transform-origin: 100% 50%;
-	 border-radius: 100px 0 0 100px;
+   top: 3px;
+   left: -2px;
+   width: 30px;
+   transform-origin: 100% 50%;
+   border-radius: 100px 0 0 100px;
 }
  .success-checkmark .check-icon::after {
-	 top: 0;
-	 left: 30px;
-	 width: 60px;
-	 transform-origin: 0 50%;
-	 border-radius: 0 100px 100px 0;
-	 animation: rotate-circle 4.25s ease-in;
+   top: 0;
+   left: 30px;
+   width: 60px;
+   transform-origin: 0 50%;
+   border-radius: 0 100px 100px 0;
+   animation: rotate-circle 4.25s ease-in;
 }
  .success-checkmark .check-icon::before, .success-checkmark .check-icon::after {
-	 content: '';
-	 height: 100px;
-	 position: absolute;
-	 background: #fff;
-	 transform: rotate(-45deg);
+   content: '';
+   height: 100px;
+   position: absolute;
+   background: #fff;
+   transform: rotate(-45deg);
 }
  .success-checkmark .check-icon .icon-line {
-	 height: 5px;
-	 background-color: #4caf50;
-	 display: block;
-	 border-radius: 2px;
-	 position: absolute;
-	 z-index: 10;
+   height: 5px;
+   background-color: #4caf50;
+   display: block;
+   border-radius: 2px;
+   position: absolute;
+   z-index: 10;
 }
  .success-checkmark .check-icon .icon-line.line-tip {
-	 top: 46px;
-	 left: 14px;
-	 width: 25px;
-	 transform: rotate(45deg);
-	 animation: icon-line-tip 0.75s;
+   top: 46px;
+   left: 14px;
+   width: 25px;
+   transform: rotate(45deg);
+   animation: icon-line-tip 0.75s;
 }
  .success-checkmark .check-icon .icon-line.line-long {
-	 top: 38px;
-	 right: 8px;
-	 width: 47px;
-	 transform: rotate(-45deg);
-	 animation: icon-line-long 0.75s;
+   top: 38px;
+   right: 8px;
+   width: 47px;
+   transform: rotate(-45deg);
+   animation: icon-line-long 0.75s;
 }
  .success-checkmark .check-icon .icon-circle {
-	 top: -4px;
-	 left: -4px;
-	 z-index: 10;
-	 width: 80px;
-	 height: 80px;
-	 border-radius: 50%;
-	 position: absolute;
-	 box-sizing: content-box;
-	 border: 4px solid rgba(76, 175, 80, .5);
+   top: -4px;
+   left: -4px;
+   z-index: 10;
+   width: 80px;
+   height: 80px;
+   border-radius: 50%;
+   position: absolute;
+   box-sizing: content-box;
+   border: 4px solid rgba(76, 175, 80, .5);
 }
  .success-checkmark .check-icon .icon-fix {
-	 top: 8px;
-	 width: 5px;
-	 left: 26px;
-	 z-index: 1;
-	 height: 85px;
-	 position: absolute;
-	 transform: rotate(-45deg);
-	 background-color: #fff;
+   top: 8px;
+   width: 5px;
+   left: 26px;
+   z-index: 1;
+   height: 85px;
+   position: absolute;
+   transform: rotate(-45deg);
+   background-color: #fff;
 }
  @keyframes rotate-circle {
-	 0% {
-		 transform: rotate(-45deg);
-	}
-	 5% {
-		 transform: rotate(-45deg);
-	}
-	 12% {
-		 transform: rotate(-405deg);
-	}
-	 100% {
-		 transform: rotate(-405deg);
-	}
+   0% {
+     transform: rotate(-45deg);
+  }
+   5% {
+     transform: rotate(-45deg);
+  }
+   12% {
+     transform: rotate(-405deg);
+  }
+   100% {
+     transform: rotate(-405deg);
+  }
 }
  @keyframes icon-line-tip {
-	 0% {
-		 width: 0;
-		 left: 1px;
-		 top: 19px;
-	}
-	 54% {
-		 width: 0;
-		 left: 1px;
-		 top: 19px;
-	}
-	 70% {
-		 width: 50px;
-		 left: -8px;
-		 top: 37px;
-	}
-	 84% {
-		 width: 17px;
-		 left: 21px;
-		 top: 48px;
-	}
-	 100% {
-		 width: 25px;
-		 left: 14px;
-		 top: 45px;
-	}
+   0% {
+     width: 0;
+     left: 1px;
+     top: 19px;
+  }
+   54% {
+     width: 0;
+     left: 1px;
+     top: 19px;
+  }
+   70% {
+     width: 50px;
+     left: -8px;
+     top: 37px;
+  }
+   84% {
+     width: 17px;
+     left: 21px;
+     top: 48px;
+  }
+   100% {
+     width: 25px;
+     left: 14px;
+     top: 45px;
+  }
 }
  @keyframes icon-line-long {
-	 0% {
-		 width: 0;
-		 right: 46px;
-		 top: 54px;
-	}
-	 65% {
-		 width: 0;
-		 right: 46px;
-		 top: 54px;
-	}
-	 84% {
-		 width: 55px;
-		 right: 0px;
-		 top: 35px;
-	}
-	 100% {
-		 width: 47px;
-		 right: 8px;
-		 top: 38px;
-	}
-}*/
+   0% {
+     width: 0;
+     right: 46px;
+     top: 54px;
+  }
+   65% {
+     width: 0;
+     right: 46px;
+     top: 54px;
+  }
+   84% {
+     width: 55px;
+     right: 0px;
+     top: 35px;
+  }
+   100% {
+     width: 47px;
+     right: 8px;
+     top: 38px;
+  }
+}
 
 /*ADDING TWO*/
 
-/*.demo1 {
-	 height: 300px;
-	 display: flex;
-	 justify-content: center;
-	 align-items: center;
+.demo1 {
+   height: 300px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
  .ui-success, .ui-error {
-	 width: 100px;
-	 height: 100px;
-	 margin: 40px;
+   width: 100px;
+   height: 100px;
+   margin: 40px;
 }
  .ui-success-circle {
-	 stroke-dasharray: 260.75219024795285px, 260.75219024795285px;
-	 stroke-dashoffset: 260.75219024795285px;
-	 transform: rotate(220deg);
-	 transform-origin: center center;
-	 stroke-linecap: round;
-	 animation: ani-success-circle 1s ease-in both;
+   stroke-dasharray: 260.75219024795285px, 260.75219024795285px;
+   stroke-dashoffset: 260.75219024795285px;
+   transform: rotate(220deg);
+   transform-origin: center center;
+   stroke-linecap: round;
+   animation: ani-success-circle 1s ease-in both;
 }
  .ui-success-path {
-	 stroke-dasharray: 60px 64px;
-	 stroke-dashoffset: 62px;
-	 stroke-linecap: round;
-	 animation: ani-success-path .4s 1s ease-in both;
+   stroke-dasharray: 60px 64px;
+   stroke-dashoffset: 62px;
+   stroke-linecap: round;
+   animation: ani-success-path .4s 1s ease-in both;
 }
  @keyframes ani-success-circle {
-	 to {
-		 stroke-dashoffset: 782.2565707438586px;
-	}
+   to {
+     stroke-dashoffset: 782.2565707438586px;
+  }
 }
  @keyframes ani-success-path {
-	 0% {
-		 stroke-dashoffset: 62px;
-	}
-	 65% {
-		 stroke-dashoffset: -5px;
-	}
-	 84% {
-		 stroke-dashoffset: 4px;
-	}
-	 100% {
-		 stroke-dashoffset: -2px;
-	}
+   0% {
+     stroke-dashoffset: 62px;
+  }
+   65% {
+     stroke-dashoffset: -5px;
+  }
+   84% {
+     stroke-dashoffset: 4px;
+  }
+   100% {
+     stroke-dashoffset: -2px;
+  }
 }
  .ui-error-circle {
-	 stroke-dasharray: 260.75219024795285px, 260.75219024795285px;
-	 stroke-dashoffset: 260.75219024795285px;
-	 animation: ani-error-circle 1.2s linear;
+   stroke-dasharray: 260.75219024795285px, 260.75219024795285px;
+   stroke-dashoffset: 260.75219024795285px;
+   animation: ani-error-circle 1.2s linear;
 }
  .ui-error-line1 {
-	 stroke-dasharray: 54px 55px;
-	 stroke-dashoffset: 55px;
-	 stroke-linecap: round;
-	 animation: ani-error-line .15s 1.2s linear both;
+   stroke-dasharray: 54px 55px;
+   stroke-dashoffset: 55px;
+   stroke-linecap: round;
+   animation: ani-error-line .15s 1.2s linear both;
 }
  .ui-error-line2 {
-	 stroke-dasharray: 54px 55px;
-	 stroke-dashoffset: 55px;
-	 stroke-linecap: round;
-	 animation: ani-error-line .2s .9s linear both;
+   stroke-dasharray: 54px 55px;
+   stroke-dashoffset: 55px;
+   stroke-linecap: round;
+   animation: ani-error-line .2s .9s linear both;
 }
  @keyframes ani-error-line {
-	 to {
-		 stroke-dashoffset: 0;
-	}
+   to {
+     stroke-dashoffset: 0;
+  }
 }
  @keyframes ani-error-circle {
-	 0% {
-		 stroke-dasharray: 0, 260.75219024795285px;
-		 stroke-dashoffset: 0;
-	}
-	 35% {
-		 stroke-dasharray: 120px, 120px;
-		 stroke-dashoffset: -120px;
-	}
-	 70% {
-		 stroke-dasharray: 0, 260.75219024795285px;
-		 stroke-dashoffset: -260.75219024795px;
-	}
-	 100% {
-		 stroke-dasharray: 260.75219024795285px, 0;
-		 stroke-dashoffset: -260.75219024795px;
-	}
-}*/
-.example button {
-  float: left;
-  background-color: #4E3E55;
-  color: white;
-  border: none;
-  box-shadow: none;
-  font-size: 17px;
-  font-weight: 500;
-  font-weight: 600;
-  border-radius: 3px;
-  padding: 15px 35px;
-  margin: 26px 5px 0 5px;
-  cursor: pointer; 
-}
-.example button:focus{
-  outline: none; 
-}
-.example button:hover{
-  background-color: #33DE23; 
-}
-.example button:active{
-  background-color: #81ccee; 
+   0% {
+     stroke-dasharray: 0, 260.75219024795285px;
+     stroke-dashoffset: 0;
+  }
+   35% {
+     stroke-dasharray: 120px, 120px;
+     stroke-dashoffset: -120px;
+  }
+   70% {
+     stroke-dasharray: 0, 260.75219024795285px;
+     stroke-dashoffset: -260.75219024795px;
+  }
+   100% {
+     stroke-dasharray: 260.75219024795285px, 0;
+     stroke-dashoffset: -260.75219024795px;
+  }
 }
  
  
@@ -479,19 +455,19 @@
     <div class="icon-fix"></div>
   </div>
 </div>
-                	
-	<div class="ui-error imagewala" id="x">
-		<svg  viewBox="0 0 87 87" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-			<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-					<g id="Group-2" transform="translate(2.000000, 2.000000)">
-						<circle id="Oval-2" stroke="rgba(252, 191, 191, .5)" stroke-width="4" cx="41.5" cy="41.5" r="41.5"></circle>
-						<circle  class="ui-error-circle" stroke="#F74444" stroke-width="4" cx="41.5" cy="41.5" r="41.5"></circle>
-							<path class="ui-error-line1" d="M22.244224,22 L60.4279902,60.1837662" id="Line" stroke="#F74444" stroke-width="3" stroke-linecap="square"></path>
-							<path class="ui-error-line2" d="M60.755776,21 L23.244224,59.8443492" id="Line" stroke="#F74444" stroke-width="3" stroke-linecap="square"></path>
-					</g>
-			</g>
-	</svg>
-	</div>
+                  
+  <div class="ui-error imagewala" id="x">
+    <svg  viewBox="0 0 87 87" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="Group-2" transform="translate(2.000000, 2.000000)">
+            <circle id="Oval-2" stroke="rgba(252, 191, 191, .5)" stroke-width="4" cx="41.5" cy="41.5" r="41.5"></circle>
+            <circle  class="ui-error-circle" stroke="#F74444" stroke-width="4" cx="41.5" cy="41.5" r="41.5"></circle>
+              <path class="ui-error-line1" d="M22.244224,22 L60.4279902,60.1837662" id="Line" stroke="#F74444" stroke-width="3" stroke-linecap="square"></path>
+              <path class="ui-error-line2" d="M60.755776,21 L23.244224,59.8443492" id="Line" stroke="#F74444" stroke-width="3" stroke-linecap="square"></path>
+          </g>
+      </g>
+  </svg>
+  </div>
                 <h6 id="test" class="fw-bold mb-1 mt-1 text-center"></h6>
             </div>
         </div>
@@ -507,7 +483,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"
         integrity="sha512-NWNl2ZLgVBoi6lTcMsHgCQyrZVFnSmcaa3zRv0L3aoGXshwoxkGs3esa9zwQHsChGRL4aLDnJjJJeP6MjPX46Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	
+
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -543,19 +519,15 @@
             
             if(res == "PK"){
 
-            	function(){
-		swal("Certificate Successfully Verified", "We Didn't Store or Display Your Personal Information", "success");
-		}
+            document.getElementById("y").style.display = "block";
+            document.getElementById("x").style.display = "none";
+            testdiv.innerHTML = "Certificate Successfully Verified";
 
             } else{
-                /*testdiv.innerHTML = "This is Not a Proper Certificate Or Scan Properly"
+                testdiv.innerHTML = "This is Not a Proper Certificate Or Scan Properly"
                 document.getElementById("x").style.display = "block";
                 document.getElementById("y").style.display = "none";
-                alert(content);*/
-		   
-		    function(){
-		swal("Not A Valid Certificate", "Scan QR Code which is in the Certificate Properly", "error");
-		}
+                alert(content);
             }
 
             //window.location.href=content;
@@ -623,7 +595,7 @@
        duration: 1000
    });
  </script> -->
-<script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script>
+
     <!--========== MAIN JS ==========-->
     <script>
         /*==================== SHOW NAVBAR ====================*/
