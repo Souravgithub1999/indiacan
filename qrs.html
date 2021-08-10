@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.0.1/tailwind.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<link rel="stylesheet" href="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css">
     <!--========== CSS ==========-->
     <link rel="stylesheet" href="navbar.css">
 
@@ -78,7 +79,7 @@
 }
 /*Adding*/
 /** * Extracted from: SweetAlert * Modified by: Istiak Tridip */
- .success-checkmark {
+ /*.success-checkmark {
 	 width: 80px;
 	 height: 115px;
 	 margin: 0 auto;
@@ -218,11 +219,11 @@
 		 right: 8px;
 		 top: 38px;
 	}
-}
+}*/
 
 /*ADDING TWO*/
 
-.demo1 {
+/*.demo1 {
 	 height: 300px;
 	 display: flex;
 	 justify-content: center;
@@ -305,6 +306,29 @@
 		 stroke-dasharray: 260.75219024795285px, 0;
 		 stroke-dashoffset: -260.75219024795px;
 	}
+}*/
+.example button {
+  float: left;
+  background-color: #4E3E55;
+  color: white;
+  border: none;
+  box-shadow: none;
+  font-size: 17px;
+  font-weight: 500;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 15px 35px;
+  margin: 26px 5px 0 5px;
+  cursor: pointer; 
+}
+.example button:focus{
+  outline: none; 
+}
+.example button:hover{
+  background-color: #33DE23; 
+}
+.example button:active{
+  background-color: #81ccee; 
 }
  
  
@@ -483,7 +507,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"
         integrity="sha512-NWNl2ZLgVBoi6lTcMsHgCQyrZVFnSmcaa3zRv0L3aoGXshwoxkGs3esa9zwQHsChGRL4aLDnJjJJeP6MjPX46Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+	<script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -519,15 +543,19 @@
             
             if(res == "PK"){
 
-            document.getElementById("y").style.display = "block";
-            document.getElementById("x").style.display = "none";
-            testdiv.innerHTML = "Certificate Successfully Verified";
+            	function(){
+		swal("Certificate Successfully Verified", "We Didn't Store or Display Your Personal Information", "success");
+		};
 
             } else{
-                testdiv.innerHTML = "This is Not a Proper Certificate Or Scan Properly"
+                /*testdiv.innerHTML = "This is Not a Proper Certificate Or Scan Properly"
                 document.getElementById("x").style.display = "block";
                 document.getElementById("y").style.display = "none";
-                alert(content);
+                alert(content);*/
+		    let test = content;
+		    function(){
+		swal("Not A Valid Certificate", "Scan QR Code which is in the Certificate Properly", "error");
+		};
             }
 
             //window.location.href=content;
