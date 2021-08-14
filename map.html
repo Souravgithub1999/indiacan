@@ -1755,7 +1755,7 @@ a {
             $("#distab").empty();
          
             console.log(stateName);
-            fetch("https://api.covid19india.org/data.json")
+            fetch("https://data.covid19india.org/data.json")
             .then(e=>{return e.json();})
             .then(data=>{
               for(var i in data.statewise){
@@ -1804,7 +1804,7 @@ a {
                 }
                 //console.log(data.statewise[i]);
               }
-              return fetch("https://api.covid19india.org/state_district_wise.json")
+              return fetch("https://data.covid19india.org/state_district_wise.json")
             }).then(e1=>{return e1.json();})
               .then(data1=>{
                  
