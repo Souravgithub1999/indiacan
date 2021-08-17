@@ -1998,6 +1998,7 @@ a {
                     
                     
                   //document.querySelector(".sconfirmed").children[2].textContent = data.statewise[i].confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		if("delta" in data[i]){
                   if("confirmed" in data[i].delta){
                   if(data[i].delta.confirmed >= 100){
                   document.querySelector(".sconfirmed").children[1].textContent = "+ " + data[i].delta.confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -2030,6 +2031,11 @@ a {
                 }else{
                     document.querySelector(".sdeath").children[1].textContent = "+ 0";
                 }
+			}else{
+                document.querySelector(".sconfirmed").children[1].textContent = "+ 0";
+                 document.querySelector(".srecover").children[1].textContent = "+ 0";
+                 document.querySelector(".sdeath").children[1].textContent = "+ 0";
+            }
 
 
 
@@ -2139,24 +2145,24 @@ a {
                             if('delta' in data1[k].districts[c]){
                             if('confirmed' in data1[k].districts[c].delta){
                             //              XXXdailydc.textContent = "&#129137" + " 0ff";
-                                dailydc.textContent = "🡩" + " " + obd.delta.confirmed
+                                dailydc.textContent = "⤴" + " " + obd.delta.confirmed
                              }else{
                             //     dailydc.textContent = "&#129137" + " " + obd.delta.confirmed;
-                                dailydc.textContent = "🡩 0"
+                                dailydc.textContent = "⤴ 0"
                              }
                                  dailydc.style.color = "#FF0000";
 
                             if('recovered' in data1[k].districts[c].delta){
-                                 dailydr.textContent = "🡩 " + obd.delta.recovered
+                                 dailydr.textContent = "⤴ " + obd.delta.recovered
                              }else{
-                                 dailydr.textContent = "🡩 0"
+                                 dailydr.textContent = "⤴ 0"
                              }
                             // //dailydr.innerHTML = "&#129137" + " " + obd.delta.recovered
                             dailydr.style.color = "#77DD77";
                         }else{
-                            dailydc.textContent = "🡩 0"
+                            dailydc.textContent = "⤴ 0"
                             dailydc.style.color = "#FF0000";
-                            dailydr.textContent = "🡩 0"
+                            dailydr.textContent = "⤴ 0"
                             dailydr.style.color = "#77DD77";
                         }
                     
