@@ -487,6 +487,14 @@ h3{
     color: rgba(76,117,242,.6);
     font-size: 30px;
 }
+	    .headRow{
+                background-color: #7785ebc7;
+                
+                
+            }
+            .headRow td{
+                color: #f0f0f0 !important;
+            }
 
 
 
@@ -785,6 +793,8 @@ a {
         /* {{!-- CNT TABLE --}} */
         .content-table2 {
             table-layout: fixed;
+		width: 910px;
+            margin-left: 160px !important;
 
             border-collapse: collapse;
             margin: 25px 0;
@@ -1074,6 +1084,31 @@ a {
 
 
             }
+		.headRow{
+                background-color: #7785ebc7;
+                
+                
+            }
+            .headRow td{
+                color: #f0f0f0 !important;
+            }
+
+            .content-table2{
+            table-layout: fixed;
+            width: 0px;
+            margin-left: 0px !important;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            margin-left: 0px;
+            border: 0px solid green;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.974);
+            }
 
 
         }
@@ -1166,6 +1201,31 @@ a {
                 font-size: 10px;
 
 
+            }
+		    .headRow{
+                background-color: #7785ebc7;
+                
+                
+            }
+            .headRow td{
+                color: #f0f0f0 !important;
+            }
+
+            .content-table2{
+            table-layout: fixed;
+            width: 0px;
+            margin-left: 0px !important;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            margin-left: 0px;
+            border: 0px solid green;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.974);
             }
         }
     </style>
@@ -1315,17 +1375,17 @@ a {
                                 <defs>
                                     <style type="text/css">
                                         .land {
-                                            fill: #c4c3c3;
+                                            fill: rgb(250, 250, 250);
                                             fill-opacity: 1;
-                                            stroke: rgb(255, 255, 255);
+                                            stroke: rgb(108, 117, 125);
                                             stroke-opacity: 1;
-                                            stroke-width: 0.7;
+                                            stroke-width: 1.8;
                                         }
 
                                         .active1 {
-                                            fill: #a7a7a7;
+                                            fill: rgb(241, 241, 241);
                                             fill-opacity: 1;
-                                            stroke: rgba(255, 63, 25, 0.78);
+                                            stroke: rgb(87, 94, 100);
                                             stroke-opacity: 1;
                                             stroke-width: 3.5;
                                         }
@@ -1798,6 +1858,9 @@ a {
       
       
          function showMapData(stateCode, stateName){
+		 document.querySelector(".sconfirmed").children[1].textContent = "+ 0";
+                 document.querySelector(".srecover").children[1].textContent = "+ 0";
+                document.querySelector(".sdeath").children[1].textContent = "+ 0";
 
 
                     // GETING TODAY
@@ -1832,64 +1895,7 @@ a {
                 console.log(data);
               for(var i in data){
                 if(i == stateCode){
-                    // if("deceased" in data[i].delta){
-                    // console.log('Exist!');
-                    // }else{
-                    //     console.log('NOT Exist!');
-                    // }
-                        // const allrec = []
-                        // for (j in data[i].delta){
-                        //     allrec.push(j);
-                        // }
-                        // console.log(allrec);
-                        // if(j == "deceased"){
-                            
-                        //     console.log("dcheck");
-
-                        // }else{
-                        //     console.log("NONONO");
-                        // }
-                        
-                    
-                    
-                  //document.querySelector(".sconfirmed").children[2].textContent = data.statewise[i].confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                  if("confirmed" in data[i].delta){
-                  if(data[i].delta.confirmed >= 100){
-                  document.querySelector(".sconfirmed").children[1].textContent = "+ " + data[i].delta.confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                  }else{
-                    document.querySelector(".sconfirmed").children[1].textContent = "+ " + data[i].delta.confirmed; 
-                  }
-                }else{
-                    document.querySelector(".sconfirmed").children[1].textContent = "+ 0";
-                }
-                  //document.querySelector(".sactive").children[2].textContent = data.statewise[i].active.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                  //document.querySelector(".srecover").children[2].textContent = data.statewise[i].recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                  if("recovered" in data[i].delta){
-                  if(data[i].delta.recovered >= 100){
-                  document.querySelector(".srecover").children[1].textContent = "+ " + data[i].delta.recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                  }else{
-                    document.querySelector(".srecover").children[1].textContent = "+ " + data[i].delta.recovered;
-                  }
-                }else{
-                    document.querySelector(".srecover").children[1].textContent = "+ 0";
-                }
-                  //document.querySelector(".sdeath").children[2].textContent = data.statewise[i].deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                  
-                  
-                  if("deceased" in data[i].delta){
-                    if(data[i].delta.deceased >= 100){
-                    document.querySelector(".sdeath").children[1].textContent = "+ " + data[i].delta.deceased.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    }else{
-                        document.querySelector(".sdeath").children[1].textContent = "+ " + data[i].delta.deceased;
-                    }
-                }else{
-                    document.querySelector(".sdeath").children[1].textContent = "+ 0";
-                }
-
-
-
-
-                  document.querySelector(".Stname").innerHTML = stateName;
+			document.querySelector(".Stname").innerHTML = stateName;
                   var last_time = data[i].meta.last_updated;
                   var dateString = last_time.substring(0, 10);
                   var time = last_time.substring(11, 19);
@@ -1971,33 +1977,138 @@ a {
                               },
                               ease:Circ.easeOut
                           });
+                    // if("deceased" in data[i].delta){
+                    // console.log('Exist!');
+                    // }else{
+                    //     console.log('NOT Exist!');
+                    // }
+                        // const allrec = []
+                        // for (j in data[i].delta){
+                        //     allrec.push(j);
+                        // }
+                        // console.log(allrec);
+                        // if(j == "deceased"){
+                            
+                        //     console.log("dcheck");
+
+                        // }else{
+                        //     console.log("NONONO");
+                        // }
+                        
+                    
+                    
+                  //document.querySelector(".sconfirmed").children[2].textContent = data.statewise[i].confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                  if("confirmed" in data[i].delta){
+                  if(data[i].delta.confirmed >= 100){
+                  document.querySelector(".sconfirmed").children[1].textContent = "+ " + data[i].delta.confirmed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                  }else{
+                    document.querySelector(".sconfirmed").children[1].textContent = "+ " + data[i].delta.confirmed; 
+                  }
+                }else{
+                    document.querySelector(".sconfirmed").children[1].textContent = "+ 0";
+                }
+                  //document.querySelector(".sactive").children[2].textContent = data.statewise[i].active.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                  //document.querySelector(".srecover").children[2].textContent = data.statewise[i].recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                  if("recovered" in data[i].delta){
+                  if(data[i].delta.recovered >= 100){
+                  document.querySelector(".srecover").children[1].textContent = "+ " + data[i].delta.recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                  }else{
+                    document.querySelector(".srecover").children[1].textContent = "+ " + data[i].delta.recovered;
+                  }
+                }else{
+                    document.querySelector(".srecover").children[1].textContent = "+ 0";
+                }
+                  //document.querySelector(".sdeath").children[2].textContent = data.statewise[i].deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                  
+                  
+                  if("deceased" in data[i].delta){
+                    if(data[i].delta.deceased >= 100){
+                    document.querySelector(".sdeath").children[1].textContent = "+ " + data[i].delta.deceased.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }else{
+                        document.querySelector(".sdeath").children[1].textContent = "+ " + data[i].delta.deceased;
+                    }
+                }else{
+                    document.querySelector(".sdeath").children[1].textContent = "+ 0";
+                }
+
+
+
+
+                  
       
       
                 }
                 //console.log(data.statewise[i]);
               }
-              return fetch("https://data.covid19india.org/state_district_wise.json")
+              return fetch("https://data.covid19india.org/v4/min/data.min.json")
             }).then(e1=>{return e1.json();})
               .then(data1=>{
+
+                    let theads = document.createElement('tr');
+                    let thdistrict = document.createElement('td');
+                    let thc = document.createElement('td');
+                    let thdc = document.createElement('td');
+                    let tha = document.createElement('td');
+                    let thr = document.createElement('td');
+                    let thdr = document.createElement('td');
+                    let thd = document.createElement('td');
+
+                    theads.classList.add("headRow");
+                    thdistrict.innerHTML = "Districts";
+                    thc.innerHTML = "Daily Confirmed";
+                    thdc.innerHTML = "Confirmed";
+                    tha.innerHTML = "Active";
+                    thr.innerHTML = "Daily Recovered";
+                    thdr.innerHTML = "Recoverd";
+                    thd.innerHTML = "Deaths";
+
+
+                    theads.appendChild(thdistrict)
+                    theads.appendChild(thc)
+                    theads.appendChild(thdc)
+                    theads.appendChild(tha)
+                    theads.appendChild(thr)
+                    theads.appendChild(thdr)
+                    theads.appendChild(thd)
+                    
+                    
+                    tabdis.appendChild(theads)
                  
                 for(var k in data1){
                   //console.log(data1[k].districtData)
-                  if(k == stateName){
+                  if(k == stateCode){
                   //console.log(data1[k].districtData);
                   /*var dname = new Array();
                   
                   dname.push(data1[k].districtData);
                   console.log(dname);*/
       
-                  for (var c in data1[k].districtData){
+                  for (var c in data1[k].districts){
                     //console.log(c);
+
+                    // const result = data1[k].districts[c].delta.confirmed ?? "Not found";
+                    // console.log(result)
                     
-                    console.log(data1[k].districtData[c])
-                    let obd = data1[k].districtData[c]
-      
-      
+                    console.log(data1[k].districts[c].total.confirmed)
+
+                    let obd = data1[k].districts[c]
+                    // let conf = []
+                    // for (var uy in data1[k].districts[c].delta){
+                        
+                    //     conf.push = uy;
+                    //     for (o in uy.length){
+                    //         if (conf[o] == "confirmed"){
+                    //             console.log("jiijjiijiji")
+                    //         }
+                    //     }
+                        
+                    // }
+                    // console.log(conf)
                     
                     
+                    
+
+
                     let rowss = document.createElement('tr');
                     let dailydc = document.createElement('td');
                     let dailydr = document.createElement('td');
@@ -2020,15 +2131,34 @@ a {
       
       
                     dn.textContent = c
-                    dnc.innerHTML = obd.confirmed
-                    dna.innerHTML = obd.active
-                    dnr.innerHTML = obd.recovered
-                    dnd.innerHTML = obd.deceased
-                    dailydc.innerHTML = "↑" + " " + obd.delta.confirmed
-                    dailydc.style.color = "#FF0000";
-                    dailydr.innerHTML = "↑" + " " + obd.delta.recovered
-                    dailydr.style.color = "#77DD77";
-      
+                    dnc.innerHTML = obd.total.confirmed
+                    dna.innerHTML = (obd.total.confirmed - (obd.total.recovered + obd.total.deceased))
+                    dnr.innerHTML = obd.total.recovered
+                    dnd.innerHTML = obd.total.deceased
+                            // var xhr = obd.delta.confirmed
+                            if('delta' in data1[k].districts[c]){
+                            if('confirmed' in data1[k].districts[c].delta){
+                            //              XXXdailydc.textContent = "&#129137" + " 0ff";
+                                dailydc.textContent = "🡩" + " " + obd.delta.confirmed
+                             }else{
+                            //     dailydc.textContent = "&#129137" + " " + obd.delta.confirmed;
+                                dailydc.textContent = "🡩 0"
+                             }
+                                 dailydc.style.color = "#FF0000";
+
+                            if('recovered' in data1[k].districts[c].delta){
+                                 dailydr.textContent = "🡩 " + obd.delta.recovered
+                             }else{
+                                 dailydr.textContent = "🡩 0"
+                             }
+                            // //dailydr.innerHTML = "&#129137" + " " + obd.delta.recovered
+                            dailydr.style.color = "#77DD77";
+                        }else{
+                            dailydc.textContent = "🡩 0"
+                            dailydc.style.color = "#FF0000";
+                            dailydr.textContent = "🡩 0"
+                            dailydr.style.color = "#77DD77";
+                        }
                     
       
                     
