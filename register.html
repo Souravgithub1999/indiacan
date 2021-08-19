@@ -15,6 +15,94 @@
 
         <title></title>
         <style>
+		/* LOADER */
+.content1{
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+.loader {
+  left: 50%;
+  top: 50%;
+  position: fixed;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.loader #spinner {
+  box-sizing: border-box;
+  stroke: #3f50b5;
+  stroke-width: 3px;
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-animation: line 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite, rotate 1.6s linear infinite;
+  animation: line 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite, rotate 1.6s linear infinite;
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  to {
+    -webkit-transform: rotate(450deg);
+    transform: rotate(450deg);
+  }
+}
+
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  to {
+    -webkit-transform: rotate(450deg);
+    transform: rotate(450deg);
+  }
+}
+
+@-webkit-keyframes line {
+  0% {
+    stroke-dasharray: 2, 85.964;
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  50% {
+    stroke-dasharray: 65.973, 21.9911;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dasharray: 2, 85.964;
+    stroke-dashoffset: -65.973;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes line {
+  0% {
+    stroke-dasharray: 2, 85.964;
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  50% {
+    stroke-dasharray: 65.973, 21.9911;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dasharray: 2, 85.964;
+    stroke-dashoffset: -65.973;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+}
+/* END lOADEr */
             .hos_section {
                 max-width: 700px;
                 margin: 50px auto;
@@ -142,6 +230,15 @@
         </style>
     </head>
     <body>
+	    <div class="content1" id="ggg">
+
+        
+            <div class="loader">
+                <svg viewBox="0 0 32 32" width="42" height="42">
+                    <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+                  </svg>
+              </div>
+            </div>
         <!--========== HEADER ==========-->
         <header class="header">
             <div class="header__container">
@@ -305,9 +402,13 @@
     var H_districtList = document.getElementById("HdistrictList");
     var HosDetails = document.getElementById("containHD");
     
-
+	function loader() {
+    $('#ggg').hide();
+        }
+        window.onload = loader;
+	
      H_stateList.addEventListener("change", function(){
-
+	$('#ggg').show();
      
          var state = H_stateList.value;
          if(state == "West Bengal"){
@@ -317,6 +418,7 @@
              fetch("https://api.covidbedsindia.in/v1/storages/608983fc03eef384cad05a78/West%20Bengal")
                  .then((res1) => res1.json())
                  .then((data1) =>{
+		     $('#ggg').hide();
                      let newArray = [];
              
                      // Declare an empty object
@@ -367,6 +469,7 @@
              fetch("https://api.covidbedsindia.in/v1/storages/608982e003eef31f34d05a71/Andhra%20Pradesh")
                  .then((res2) => res2.json())
                  .then((data2) =>{
+		     $('#ggg').hide();
                      let newArrayAP = [];
                      let uniqueObjectAP = {};
                      for (let k in data2) {
@@ -406,6 +509,7 @@
              fetch("https://api.covidbedsindia.in/v1/storages/60a62cf2e75f9c105696eb38/Bihar")
              .then((res3) => res3.json())
              .then((data3) =>{
+		     $('#ggg').hide();
                  let newArrayBR = [];
                  let uniqueObjectBR = {};
                  for (let n in data3) {
@@ -439,6 +543,7 @@
              fetch("https://api.covidbedsindia.in/v1/storages/6089833203eef38338d05a73/Chhattisgarh")
              .then((res4) => res4.json())
              .then((data4) =>{
+		     $('#ggg').hide();
                  let newArrayCH = [];
                  let uniqueObjectCH = {};
                  for (let p in data4) {
@@ -474,6 +579,7 @@
              fetch("https://api.covidbedsindia.in/v1/storages/608983ed03eef39bb4d05a77/Rajasthan")
              .then((res5) => res5.json())
              .then((data5) =>{
+		     $('#ggg').hide();
                  let newArrayRJ = [];
                  let uniqueObjectRJ = {};
                  for (let r in data5) {
@@ -507,6 +613,7 @@
              fetch("https://api.covidbedsindia.in/v1/storages/6089820e03eef3b588d05a6d/Tamil%20Nadu")
              .then((res6) => res6.json())
              .then((data6) =>{
+		     $('#ggg').hide();
                  let newArrayTN = [];
                  let uniqueObjectTN = {};
                  for (let t in data6) {
@@ -540,6 +647,7 @@
              fetch("https://api.covidbedsindia.in/v1/storages/608d542333382c01aecf8c95/Uttarakhand")
              .then((res7) => res7.json())
              .then((data7) =>{
+		     $('#ggg').hide();
                  let newArrayUK = [];
                  let uniqueObjectUK = {};
                  for (let v in data7) {
