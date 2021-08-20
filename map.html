@@ -1544,10 +1544,24 @@ a {
               $(".land").click(function(){
                 $(".land").removeClass("active1");
                 $(this).addClass("active1");
+		      if (window.matchMedia('(max-width: 768px)').matches)
+                    {
+                        document.getElementById("tal1").style.fontSize = "15px";
+                        document.getElementById("tal3").style.fontSize = "15px";
+                        document.getElementById("tal2").style.fontSize = "15px";
+                        document.getElementById("tal4").style.fontSize = "15px";
+                    }
               });
             });
 		window.onload = function() {
                     showMapData('TT', 'India');
+			var x = window.matchMedia("(max-width: 700px)")
+                    if (x.matches) { 
+                        document.getElementById("tal1").style.fontSize = "13px";
+                        document.getElementById("tal3").style.fontSize = "13px";
+                        document.getElementById("tal2").style.fontSize = "13px";
+                        document.getElementById("tal4").style.fontSize = "13px";
+                    }
                 };
       
       
