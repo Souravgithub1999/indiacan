@@ -34,6 +34,48 @@
 	 #tyoing{
             	height: 15px;
         }
+	    /* TESTETSRST */
+    @keyframes fadeInUp {
+	 from {
+		 opacity: 0;
+		 -webkit-transform: translate3d(0,100%,0);
+		 transform: translate3d(0,100%,0);
+	}
+	 to {
+		 opacity: 1;
+		 -webkit-transform: none;
+		 transform: none;
+	}
+	}
+	 .sn {
+		 opacity: 0;
+		 animation: fadeInUp 0.5s ease-in-out 0s forwards;
+	}
+	 .sn.first {
+		 animation-delay: 0.5s;
+	}
+	 .sn.second {
+		 animation-delay: 0.7s;
+	}
+	 .sn.third {
+		 animation-delay: 0.9s;
+	}
+	.sn.fourth {
+		 animation-delay: 1.1s;
+	}
+	.sn.fifth {
+		 animation-delay: 1.3s;
+	}
+	.sn.sixth {
+		 animation-delay: 1.5s;
+	}
+	.sn.seventh {
+		 animation-delay: 1.7s;
+	}
+	.sn.eight {
+		 animation-delay: 1.9s;
+	     animation-duration: 1s;
+	}
 
         h6{
     display: inline;
@@ -1319,16 +1361,16 @@ a {
             <div class="col-md-10 col-12 mx-auto">
 
 
-                <div class="Stname fw-bold">India</div>
-                <div class="stdate text-muted" id="stdate">Last Updated on --/--/-- IST</div>
-                <div class="stdate text-muted" id="tyoing"><span class="cursor">&nbsp;</span></div>
+                <div class="sn Stname fw-bold first">India</div>
+                <div class="sn stdate text-muted second" id="stdate">Last Updated on --/--/-- IST</div>
+                <div class="sn stdate text-muted third" id="tyoing"><span class="cursor">&nbsp;</span></div>
                 <div class="row">
                     <div class="col-12">
 
                         <div class="content1">
                             <!-- {{!-- Confirnmed --}} -->
                             <div class="col-3">
-                                <div class="box1 sconfirmed">
+                                <div class="sn box1 sconfirmed fourth">
                                     <p>Confirmed</p>
                                     <h6 class="pluss"></h6>
                                     <h5 id="tal1"></h5>
@@ -1338,7 +1380,7 @@ a {
                             <!-- {{!-- active --}} -->
 
                             <div class="col-3">
-                                <div class="box1 sactive">
+                                <div class="sn box1 sactive fifth">
                                     <p>Active</p>
                                     <i class='bx bx'></i>
                                     <h5 id="tal2"></h5>
@@ -1348,7 +1390,7 @@ a {
 
                             <!-- {{!-- recover --}} -->
                             <div class="col-3">
-                                <div class="box1 srecover">
+                                <div class="sn box1 srecover sixth">
                                     <p>Recover</p>
                                     <h6 class="pluss"></h6>
                                     <h5 id="tal3"></h5>
@@ -1358,7 +1400,7 @@ a {
 
                             <!-- {{!-- deaths --}} -->
                             <div class="col-3">
-                                <div class="box1 sdeath">
+                                <div class="sn box1 sdeath seventh">
                                     <p>Deaths</p>
                                     <h6 class="pluss"></h6>
                                     <h5 id="tal4"></h5>
@@ -1372,7 +1414,7 @@ a {
 
 
                         <!-- {{!-- map div --}} -->
-                        <div class="map">
+                        <div class="sn map eight">
 
                             <?xml version="1.0" encoding="utf-8"?>
                             <!-- (c) ammap.com | SVG map of India 2019 - High -->
@@ -1549,6 +1591,7 @@ a {
                 $(".land").removeClass("active1");
                 $(this).addClass("active1");
 		      document.getElementById("tyoing").style.visibility = "hidden";
+		      document.querySelector(".scol").style.display = "block";
 		      if (window.matchMedia('(max-width: 768px)').matches)
                     {
                         document.getElementById("tal1").style.fontSize = "15px";
@@ -1600,6 +1643,7 @@ a {
             if(textArray.length) setTimeout(type, newTextDelay + 250);
             });
 		window.onload = function() {
+			document.querySelector(".scol").style.display = "none";
                     showMapData('TT', 'India');
 			var x = window.matchMedia("(max-width: 700px)")
                     if (x.matches) { 
