@@ -1316,8 +1316,9 @@ a {
             <div class="col-md-10 col-12 mx-auto">
 
 
-                <div class="Stname fw-bold">Click On Any State</div>
-                <div class="stdate text-muted">Last Updated on --/--/-- IST</div>
+                <div class="Stname fw-bold">India</div>
+                <div class="stdate text-muted" id="stdate">Last Updated on --/--/-- IST</div>
+                <div class="stdate text-muted" id="tyoing"><span class="cursor">&nbsp;</span></div>
                 <div class="row">
                     <div class="col-12">
 
@@ -1544,6 +1545,7 @@ a {
               $(".land").click(function(){
                 $(".land").removeClass("active1");
                 $(this).addClass("active1");
+		      document.getElementById("tyoing").style.visibility = "hidden";
 		      if (window.matchMedia('(max-width: 768px)').matches)
                     {
                         document.getElementById("tal1").style.fontSize = "15px";
@@ -1552,6 +1554,47 @@ a {
                         document.getElementById("tal4").style.fontSize = "15px";
                     }
               });
+            });
+		const typedTextSpan = document.getElementById("tyoing");
+            const cursorSpan = document.querySelector(".cursor");
+
+            const textArray = ["Click on West Bengal", "Click on Andra Pradesh", "Click on Odisha", "Click on Bihar"];
+            const typingDelay = 100;
+            const erasingDelay = 60;
+            const newTextDelay = 80; // Delay between current and next text
+            let textArrayIndex = 0;
+            let charIndex = 0;
+
+            function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            } 
+            else {
+                cursorSpan.classList.remove("typing");
+                setTimeout(erase, newTextDelay);
+            }
+            }
+
+            function erase() {
+                if (charIndex > 0) {
+                if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+                charIndex--;
+                setTimeout(erase, erasingDelay);
+            } 
+            else {
+                cursorSpan.classList.remove("typing");
+                textArrayIndex++;
+                if(textArrayIndex>=textArray.length) textArrayIndex=0;
+                setTimeout(type, typingDelay + 1100);
+            }
+            }
+
+            document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
+            if(textArray.length) setTimeout(type, newTextDelay + 250);
             });
 		window.onload = function() {
                     showMapData('TT', 'India');
@@ -1965,7 +2008,7 @@ a {
 
 
 
-                  document.querySelector(".stdate").innerHTML = "Last Updated on"+ " "+ date_response +" "+ time +" "+"IST";
+                  document.getElementById("stdate").innerHTML = "Last Updated on"+ " "+ date_response +" "+ time +" "+"IST";
                   //document.querySelector(".dtdate").innerHTML = "District Wise Data of"+ " "+  data.statewise[i].state;
       
                           function numberWithCommas(n) {
