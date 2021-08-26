@@ -74,7 +74,11 @@
 	}
 	.sn.eight {
 		 animation-delay: 1.9s;
-	     animation-duration: 1s;
+	     	 animation-duration: 1s;
+	}
+	.sn.ninth {
+	 	 animation-delay: 2.1s;
+     
 	}
 
         h6{
@@ -370,6 +374,23 @@ h3{
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.974);
 }
+.progbox{
+    margin: auto;
+    /* border: red solid 1px; */
+    padding: 20px 15px;
+    margin-left: 70px;
+    width: 1015px;
+    height: 210px;
+    /*box-shadow: 0 5px 15px rgba(0,0,0,0.1);*/
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    /* box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.707),
+                inset -5px -5px -5px rgba(255, 255, 255, 0.707),
+                5px 5px 5px rgba(0, 0, 0, 0.707),
+                -5px -5px -5px rgba(255, 255, 255, 0.707); */
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.974);
+}
 
 
  .vacdivs{ /*DISCARDED */
@@ -541,7 +562,32 @@ h3{
                 color: #f0f0f0 !important;
             }
 
+/* PROGRESS BAR */
+.textbox {
+  height: 700px;
+}
 
+.progress {
+  margin-bottom: 10px;
+  padding: 4px;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0px 1px 2px rgb(0 0 0 / 20%);
+    border-radius: 3px;
+    height: 25px;
+    background-color: rgba(0,123,255,.12549019607843137);
+    clear: left;
+
+}
+
+.progress-bar {
+  width: 0;
+  border-radius: 3px;
+  font-family: 'archiaregular', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  
+  background-color: #007bff;
+}
 
 
 
@@ -673,6 +719,20 @@ h3{
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     background-color: rgba(255, 255, 255, 0.974);
     }
+    .progbox{
+        margin: auto;
+        width: 375px;
+        height: 200px;
+        /* box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 1),
+                    inset -5px -5px -5px rgba(255, 255, 255, 1),
+                    5px 5px 5px rgba(0, 0, 0, 1),
+                    -5px -5px -5px rgba(255, 255, 255, 1); */
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: rgba(255, 255, 255, 0.974);
+    
+    }
+	
     .left-div{
         margin: auto;
         width: 375px;
@@ -1274,6 +1334,18 @@ a {
             z-index: 50;
             background-color: rgba(255, 255, 255, 0.974);
             }
+		    .progbox{
+        margin: auto;
+        width: 330px;
+        height: 200px;
+        /* box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 1),
+                    inset -5px -5px -5px rgba(255, 255, 255, 1),
+                    5px 5px 5px rgba(0, 0, 0, 1),
+                    -5px -5px -5px rgba(255, 255, 255, 1); */
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: rgba(255, 255, 255, 0.974);
+    }
         }
     </style>
 
@@ -1526,6 +1598,32 @@ a {
                         </div>
 
                         <!-- {{!-- MAP DIV ENDS --}} -->
+				
+				<div class="sn col-12 progbox mt-0 ninth" id="pgbar">
+                    
+                            <div class="card-head fw-bold" style="display: block;">Total Vaccination Percentage %</div>
+                            <div class="ddddsf" style="float: left; clear: left; width: 100%;">
+                                <div class="row">
+                                    <div class="col-12">
+                                      <span style="float: left; font-family: 'archiaregular', sans-serif; color: #6c757d; font-size: 13px; margin-bottom: 4px;">At least one dose</span>
+                                      <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="33.6" aria-valuemin="0" aria-valuemax="100" id="progress1"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="ddddsf" style="float: left; clear: left; width: 100%; margin-top: 15px;">
+                                <div class="row">
+                                    <div class="col-12">
+                                      <span style="float: left; font-family: 'archiaregular', sans-serif; color: #6c757d; font-size: 13px; margin-bottom: 4px;">Fully vaccinated</span>
+                                      <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="33.6" aria-valuemin="0" aria-valuemax="100" id="progress2"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                            
+                        </div>
 
                         <div class="table-responsive">
                             <div class="dtdate mt-3"></div>
@@ -2087,6 +2185,40 @@ a {
                               ease:Circ.easeOut
                               
                           });
+			
+			var population = data[i].meta.population;
+                        console.log(population);
+                        var v1 = data[i].total.vaccinated1;
+                        var vt = data[i].total.vaccinated2;
+                        var percentage_d1 = (v1/population) * 100;
+                        var percentage_d1_round = Math.round(percentage_d1);
+                        console.log(percentage_d1_round);
+
+
+                        var percentage_total = (vt/population) * 100;
+                        var percentage_d2_round = Math.round(percentage_total);
+                        
+
+                        document.getElementById("progress1").setAttribute("aria-valuenow", percentage_d1_round);
+                        document.getElementById("progress1").innerHTML = percentage_d1_round + "%";
+                        document.getElementById("progress2").setAttribute("aria-valuenow", percentage_d2_round);
+                        document.getElementById("progress2").innerHTML = percentage_d2_round + "%";
+                        var delay = 2000;
+
+                        $(".progress-bar").each(function(i){
+                           
+                            $(this).delay( delay*i ).animate( { width: $(this).attr('aria-valuenow') + '%' }, delay );
+
+                            $(this).prop('Counter',0).animate({
+                                Counter: $(this).text()
+                            }, {
+                                duration: delay,
+                                easing: 'swing',
+                                step: function (now) {
+                                    $(this).text(Math.ceil(now)+'%');
+                                }
+                            });
+                        });
                     // if("deceased" in data[i].delta){
                     // console.log('Exist!');
                     // }else{
