@@ -2377,7 +2377,7 @@ a {
                         var totalconfirmed = data[i].total.confirmed;
                         var activeratio = Math.round(((totalactive/totalconfirmed) * 100) * 10) / 10;
                         document.getElementById('activeratio').innerHTML = activeratio+'%';
-                        document.getElementById('activedes').innerHTML = "For every 100 confirmed cases, ~ "+activeratio+"are currently infected."
+                        document.getElementById('activedes').innerHTML = "For every 100 confirmed cases, ~ "+activeratio+" are currently infected."
                         
                         var totalrecover = data[i].total.recovered;
                         var recratio = Math.round(((totalrecover/totalconfirmed) * 100) * 10) / 10;
