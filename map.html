@@ -350,7 +350,6 @@ h3{
 
 }
 /* canvas{
-
     width:900px !important;
     height:450px !important;
     margin: auto;
@@ -383,6 +382,24 @@ h3{
 }
 .progbox{
    
+    margin: auto;
+    /* border: red solid 1px; */
+    padding: 20px 15px;
+    margin-left: 160px;
+            
+    width: 910px;
+    height: 210px;
+    /*box-shadow: 0 5px 15px rgba(0,0,0,0.1);*/
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    /* box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.707),
+                inset -5px -5px -5px rgba(255, 255, 255, 0.707),
+                5px 5px 5px rgba(0, 0, 0, 0.707),
+                -5px -5px -5px rgba(255, 255, 255, 0.707); */
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.974);
+}
+.vac_chart{
     margin: auto;
     /* border: red solid 1px; */
     padding: 20px 15px;
@@ -773,6 +790,19 @@ h3{
     margin-bottom: 25px;
     
     }
+    .vac_chart{
+        margin: auto;
+        width: 375px;
+        height: 200px;
+        /* box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 1),
+                    inset -5px -5px -5px rgba(255, 255, 255, 1),
+                    5px 5px 5px rgba(0, 0, 0, 1),
+                    -5px -5px -5px rgba(255, 255, 255, 1); */
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: rgba(255, 255, 255, 0.974);
+    margin-bottom: 25px;
+    }
     .left-div{
         margin: auto;
         width: 375px;
@@ -816,7 +846,6 @@ h3{
         padding: 5px;
         border: red solid 1px;
         
-
     }  */
     
     .vacdivs{
@@ -1048,7 +1077,7 @@ a {
 
         }
 
-        svg {
+        .map svg {
             width: 100%;
             height: 850px;
         }
@@ -1221,7 +1250,7 @@ a {
 
             }
 
-            svg {
+            .map svg {
                 height: 650px;
                 width: 672px;
                 margin-left: -175px;
@@ -1381,7 +1410,7 @@ a {
 
             }
 
-            svg {
+            .map svg {
                 height: 650px;
                 width: 650px;
                 margin-left: -175px;
@@ -1443,6 +1472,23 @@ a {
     background-color: rgba(255, 255, 255, 0.974);
     margin-bottom: 25px;
     }
+    .vac_chart{
+        margin: auto;
+        width: 330px;
+        height: 200px;
+        /* box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 1),
+                    inset -5px -5px -5px rgba(255, 255, 255, 1),
+                    5px 5px 5px rgba(0, 0, 0, 1),
+                    -5px -5px -5px rgba(255, 255, 255, 1); */
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: rgba(255, 255, 255, 0.974);
+    margin-bottom: 25px;
+    }
+    #chart {
+  max-width: 330px;
+  margin: 35px auto;
+}
 
     /* EXTRA DIV */
     .ar{
@@ -1762,6 +1808,10 @@ a {
                             </div>
                             
                         </div>
+				
+			<div class="col-12 vac_chart mt-3" id="chart">
+                            
+                        </div>
 
                         <div class="table-responsive mb-5">
                             <div class="dtdate mt-3"></div>
@@ -1835,6 +1885,7 @@ a {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"
         integrity="sha512-NWNl2ZLgVBoi6lTcMsHgCQyrZVFnSmcaa3zRv0L3aoGXshwoxkGs3esa9zwQHsChGRL4aLDnJjJJeP6MjPX46Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
         <script>
             $(document).ready(function(){
@@ -2206,6 +2257,146 @@ a {
                                             
                                         
                                     //});
+		const pio = [];
+                    let new_date = new Array();
+                    const gotit = [];
+                    
+                    fetch('https://data.covid19india.org/v4/min/timeseries.min.json')
+                     .then(e=>{return e.json();})
+                     .then(dataTS=>{
+                         
+                        
+                         
+                         console.log(dataTS);
+
+                         const propertyNames = Object.keys(dataTS["TT"].dates);
+                         //console.log(propertyNames.slice(Math.max(propertyNames.length - 5, 1)));
+                         const lastfive = propertyNames.slice(Math.max(propertyNames.length - 5, 1));
+                         //console.log(lastfive);
+                         
+                         for (const val of lastfive) { 
+                            if("vaccinated1" in dataTS["TT"].dates[val].delta){
+                                //console.log(dataTS[stateCode].dates[val].delta.vaccinated1);
+                                pio.push(dataTS["TT"].dates[val].delta.vaccinated1);
+
+                            }else{
+                                const valnew = lastfive[3];
+                                // //console.log(lastfive[3]);
+                                pio.push(dataTS["TT"].dates[valnew].delta.vaccinated1);
+                                //pio.push("NA");
+                            }
+                            //console.log(dataTS[stateCode].dates[val].total.vaccinated1);
+                            
+                        }
+                        
+                        console.log(pio)
+                        console.log(lastfive)
+                        
+                        
+                        
+                    //     for (let index = 0; index < lastfive.length; ++index) {
+                    //         //console.log(pio[index]);
+                    //         var five_date = lastfive[index];
+                    //         var dd_five_date = five_date.substring(0, 10);
+
+
+                    //         function formatDate(d) 
+                    // {
+                    // var date = new Date(d);
+
+                    // if ( isNaN( date .getTime() ) ) 
+                    // {
+                    //     return d;
+                    // }
+                    // else
+                    // {
+                    
+                    // var month = new Array();
+                    // month[0] = "Jan";
+                    // month[1] = "Feb";
+                    // month[2] = "Mar";
+                    // month[3] = "Apr";
+                    // month[4] = "May";
+                    // month[5] = "Jun";
+                    // month[6] = "Jul";
+                    // month[7] = "Aug";
+                    // month[8] = "Sept";
+                    // month[9] = "Oct";
+                    // month[10] = "Nov";
+                    // month[11] = "Dec";
+
+                    // day = date.getDate();
+                    
+                    // if(day < 10)
+                    // {
+                    //     day = "0"+day;
+                    // }
+                    
+                    // return    day  + " " +month[date.getMonth()] + " " + date.getFullYear();
+                    // }
+                        
+                    // }
+                    // date_response = formatDate(dd_five_date);
+                    // new_date.push(date_response.substring(0, 6));
+                    
+                    
+                    //     }
+                       
+                    //     console.log(new_date);
+                        
+                
+                  
+                        
+                    
+                    
+                });
+		
+		//  CHARTAPEX START
+                    
+                      var options = {
+                      chart: {
+                        type: "area",
+                        
+                        height: 200,
+                        zoom: {
+                          type: "x",
+                          enabled: true
+                        },
+                        toolbar: {
+                           show: false,
+                        }
+                      },
+                      dataLabels: {
+                        enabled: false
+                    },
+                      series: [{
+                        name: 'Dose 1',
+                        data: pio
+                      }],
+                      fill: {
+                        type: "gradient",
+                        gradient: {
+                        shadeIntensity: 1,
+                        opacityFrom: 0.7,
+                        opacityTo: 0.9,
+                        stops: [0, 90, 100]
+                        }
+                    },
+                      xaxis: {
+                        categories: [32, 44, 31, 41, 22]
+                      },
+                      yaxis: {
+                        show: false,
+                       }
+                    }
+
+                    var chart = new ApexCharts(document.querySelector("#chart"), options);
+                    
+                    
+                    chart.render();
+                    
+                    
+                    // *****--------CHARTENDS----------***** 
                   
                   
               
@@ -2221,6 +2412,94 @@ a {
 		 document.querySelector(".sconfirmed").children[1].textContent = "+ 0";
                  document.querySelector(".srecover").children[1].textContent = "+ 0";
                 document.querySelector(".sdeath").children[1].textContent = "+ 0";
+		 
+		 fetch('https://data.covid19india.org/v4/min/timeseries.min.json')
+                     .then(e=>{return e.json();})
+                     .then(dataTS=>{
+                        console.log(dataTS);
+
+                        const propertyNames = Object.keys(dataTS[stateCode].dates);
+                        //console.log(propertyNames.slice(Math.max(propertyNames.length - 5, 1)));
+                        const lastfive = propertyNames.slice(Math.max(propertyNames.length - 5, 1));
+                        //console.log(lastfive);
+                        const pio1 = [];
+                        //const new_date = [];
+                        for (const val of lastfive) { 
+                        if("vaccinated1" in dataTS[stateCode].dates[val].delta){
+                            //console.log(dataTS[stateCode].dates[val].delta.vaccinated1);
+                            pio1.push(dataTS[stateCode].dates[val].delta.vaccinated1);
+
+                        }else{
+                            const valnew = lastfive[3];
+                            // //console.log(lastfive[3]);
+                            //pio1.push(dataTS[stateCode].dates[valnew].delta.vaccinated1);
+                            pio1.push("NA");
+                        }
+                        //console.log(dataTS[stateCode].dates[val].total.vaccinated1);
+                        
+                        }
+                        for (let index = 0; index < lastfive.length; ++index) {
+                            //console.log(pio[index]);
+                            var five_date = lastfive[index];
+                            var dd_five_date = five_date.substring(0, 10);
+
+
+                            function formatDate(d) 
+                    {
+                    var date = new Date(d);
+
+                    if ( isNaN( date .getTime() ) ) 
+                    {
+                        return d;
+                    }
+                    else
+                    {
+                    
+                    var month = new Array();
+                    month[0] = "Jan";
+                    month[1] = "Feb";
+                    month[2] = "Mar";
+                    month[3] = "Apr";
+                    month[4] = "May";
+                    month[5] = "Jun";
+                    month[6] = "Jul";
+                    month[7] = "Aug";
+                    month[8] = "Sept";
+                    month[9] = "Oct";
+                    month[10] = "Nov";
+                    month[11] = "Dec";
+
+                    day = date.getDate();
+                    
+                    if(day < 10)
+                    {
+                        day = "0"+day;
+                    }
+                    
+                    return    day  + " " +month[date.getMonth()] + " " + date.getFullYear();
+                    }
+                        
+                    }
+                    date_response = formatDate(dd_five_date);
+                    new_date.push(date_response.substring(0, 6));
+                    
+                    
+                        }
+                       
+                        console.log(new_date);
+
+                        chart.updateSeries([{
+                        name: 'DOSE 1',
+                        data: pio1
+                        }]);
+                        chart.updateOptions({
+                        
+                        xaxis: {
+                            categories: new_date
+                        }
+                        });
+                        
+                     });
 
 
                     // GETING TODAY
