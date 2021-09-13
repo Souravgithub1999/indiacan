@@ -2721,12 +2721,12 @@ a {
                         var totalconfirmed = data[i].total.confirmed;
                         var activeratio = Math.round(((totalactive/totalconfirmed) * 100) * 10) / 10;
                         document.getElementById('activeratio').innerHTML = activeratio+'%';
-                        document.getElementById('activedes').innerHTML = "For every 100 confirmed cases, ~ "+activeratio+" are currently infected " + stateName + ".";
+                        document.getElementById('activedes').innerHTML = "For every 100 confirmed cases, ~ "+activeratio+" are currently infected in " + stateName + ".";
                         
                         var totalrecover = data[i].total.recovered;
                         var recratio = Math.round(((totalrecover/totalconfirmed) * 100) * 10) / 10;
                         document.getElementById('recratio').innerHTML = recratio+'%';
-                        document.getElementById('recdes').innerHTML = "For every 100 confirmed cases, ~"+recratio+" have recovered from the virus " + stateName + ".";
+                        document.getElementById('recdes').innerHTML = "For every 100 confirmed cases, ~"+recratio+" have recovered from the virus in " + stateName + ".";
 
                         console.log(activeratio);
                     // if("deceased" in data[i].delta){
