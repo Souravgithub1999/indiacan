@@ -406,7 +406,7 @@ h3{
     margin-left: 160px;
             
     width: 910px;
-    height: 210px;
+    height: 270px;
     /*box-shadow: 0 5px 15px rgba(0,0,0,0.1);*/
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
@@ -416,6 +416,14 @@ h3{
                 -5px -5px -5px rgba(255, 255, 255, 0.707); */
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.974);
+}
+.doseselectbox{
+    margin-top: -4px;
+}
+
+.doseselectbox:focus{
+    outline: none !important;
+   box-shadow: none;
 }
 
 
@@ -793,7 +801,7 @@ h3{
     .vac_chart{
         margin: auto;
         width: 375px;
-        height: 200px;
+        height: 250px;
         /* box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 1),
                     inset -5px -5px -5px rgba(255, 255, 255, 1),
                     5px 5px 5px rgba(0, 0, 0, 1),
@@ -803,6 +811,9 @@ h3{
     background-color: rgba(255, 255, 255, 0.974);
     margin-bottom: 25px;
     }
+    .doseselectbox{
+    margin-top: -4px;
+}
     .left-div{
         margin: auto;
         width: 375px;
@@ -1475,7 +1486,7 @@ a {
     .vac_chart{
         margin: auto;
         width: 330px;
-        height: 200px;
+        height: 250px;
         /* box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 1),
                     inset -5px -5px -5px rgba(255, 255, 255, 1),
                     5px 5px 5px rgba(0, 0, 0, 1),
@@ -1485,6 +1496,9 @@ a {
     background-color: rgba(255, 255, 255, 0.974);
     margin-bottom: 25px;
     }
+    .doseselectbox{
+    margin-top: -4px;
+}
     #chart {
   max-width: 330px;
   margin: 35px auto;
@@ -1529,6 +1543,11 @@ a {
 .rr h1{
     color: #28a745;
     font-weight: 700;
+}
+.innerchart{
+    margin: auto;
+        width: 330px;
+        height: 200px;
 }
         }
     </style>
@@ -1809,8 +1828,15 @@ a {
                             
                         </div>
 				
-			<div class="col-12 vac_chart mt-3" id="chart">
-                            
+			<div class="col-12 vac_chart mt-3">
+				<div class="card-head fw-bold mb-0" style="display: block;">Vaccination Progress</div><select style="width: 100px; height: 30px; font-size: 15px; float: right; border: none;" id="selectoption" class="form-select doseselectbox" aria-label="Default select example">
+                                <option selected value="d1">Dose 1</option>
+                                <option value="d2">Dose 2</option>
+                                
+                              	</select>
+                            	<div class="col-12 mt-3" id="chart">
+
+                            	</div>
                         </div>
 
                         <div class="table-responsive mb-5">
@@ -1894,6 +1920,7 @@ a {
                 $(this).addClass("active1");
 		      document.getElementById("tyoing").style.visibility = "hidden";
 		      document.querySelector(".scol").style.display = "block";
+		      $('#selectoption option:first').prop('selected', true);
 		      if (window.matchMedia('(max-width: 768px)').matches)
                     {
                         document.getElementById("tal1").style.fontSize = "15px";
@@ -2369,6 +2396,9 @@ a {
                       dataLabels: {
                         enabled: false
                     },
+		      noData: {
+                    text: 'Loading Please Wait....'
+                    },
                       series: [{
                         name: 'Dose 1',
                         data: pio
@@ -2420,20 +2450,23 @@ a {
 
                         const propertyNames = Object.keys(dataTS[stateCode].dates);
                         //console.log(propertyNames.slice(Math.max(propertyNames.length - 5, 1)));
-                        const lastfive = propertyNames.slice(Math.max(propertyNames.length - 5, 1));
+                        const lastfive = propertyNames.slice(Math.max(propertyNames.length - 7, 1));
                         //console.log(lastfive);
                         const pio1 = [];
+                        const pio2 = [];
                         //const new_date = [];
                         for (const val of lastfive) { 
                         if("vaccinated1" in dataTS[stateCode].dates[val].delta){
                             //console.log(dataTS[stateCode].dates[val].delta.vaccinated1);
                             pio1.push(dataTS[stateCode].dates[val].delta.vaccinated1);
+                            pio2.push(dataTS[stateCode].dates[val].delta.vaccinated2);
 
                         }else{
                             const valnew = lastfive[3];
                             // //console.log(lastfive[3]);
                             //pio1.push(dataTS[stateCode].dates[valnew].delta.vaccinated1);
                             pio1.push("NA");
+                            pio2.push("NA");
                         }
                         //console.log(dataTS[stateCode].dates[val].total.vaccinated1);
                         
@@ -2488,12 +2521,44 @@ a {
                        
                         console.log(new_date);
 
+                        document.getElementById('selectoption').addEventListener("change", function(){
+
+
+                            if(document.getElementById('selectoption').value == "d1") {
+                            //Do something
+                            chart.updateSeries([{
+                        name: 'DOSE 1',
+                        data: pio1
+                        }]);
+
+                        chart.updateOptions({
+                        xaxis: {
+                            categories: new_date
+                        }
+                        });
+                        console.log("d1SELECTED")
+                        } else if (document.getElementById('selectoption').value == "d2") {
+                            chart.updateSeries([{
+                        name: 'DOSE 2',
+                        data: pio2
+                        }]);
+
+                        chart.updateOptions({
+                        xaxis: {
+                            categories: new_date
+                        }
+                        });
+                        console.log("d2selected")
+                        }
+                        });
+                        
+
                         chart.updateSeries([{
                         name: 'DOSE 1',
                         data: pio1
                         }]);
+
                         chart.updateOptions({
-                        
                         xaxis: {
                             categories: new_date
                         }
@@ -2656,12 +2721,12 @@ a {
                         var totalconfirmed = data[i].total.confirmed;
                         var activeratio = Math.round(((totalactive/totalconfirmed) * 100) * 10) / 10;
                         document.getElementById('activeratio').innerHTML = activeratio+'%';
-                        document.getElementById('activedes').innerHTML = "For every 100 confirmed cases, ~ "+activeratio+" are currently infected."
+                        document.getElementById('activedes').innerHTML = "For every 100 confirmed cases, ~ "+activeratio+" are currently infected " + stateName + ".";
                         
                         var totalrecover = data[i].total.recovered;
                         var recratio = Math.round(((totalrecover/totalconfirmed) * 100) * 10) / 10;
                         document.getElementById('recratio').innerHTML = recratio+'%';
-                        document.getElementById('recdes').innerHTML = "For every 100 confirmed cases, ~"+recratio+" have recovered from the virus."
+                        document.getElementById('recdes').innerHTML = "For every 100 confirmed cases, ~"+recratio+" have recovered from the virus " + stateName + ".";
 
                         console.log(activeratio);
                     // if("deceased" in data[i].delta){
