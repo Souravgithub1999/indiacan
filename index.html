@@ -1924,7 +1924,7 @@ function timeseries(){
                         
                      });
         }
-        timeseries();
+        
 function trytest(){
     $('#ggg').show();
     fetch('https://data.covid19india.org/v4/min/data.min.json')
@@ -2069,7 +2069,7 @@ function trytest(){
             });
 }
 trytest();
-
+setTimeout(function() { timeseries(); }, 3000);
 let dataChart = [];
 const API_URL = "https://data.covid19india.org/data.json "
 
