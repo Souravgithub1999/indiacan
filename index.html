@@ -28,6 +28,19 @@
          url('archia-regular-webfont.woff');
     
 }
+	.doseselectbox{
+    margin-top: -5px;
+    /* margin-bottom: 10px; */
+}
+
+.doseselectbox:focus{
+    outline: none !important;
+   box-shadow: none;
+}
+#myChart{
+    margin-top: 20px;
+
+}
 	/* LOADER */
 .content1{
   background-color: #F9F6FD;
@@ -399,7 +412,7 @@ h3{
     padding: 20px 15px;
     margin-left: 70px;
     width: 1015px;
-    height: 560px;
+    height: 360px;
     /*box-shadow: 0 5px 15px rgba(0,0,0,0.1);*/
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
@@ -773,7 +786,7 @@ h3{
          
         margin: auto;
         width: 375px;
-        height: 230px;
+        height: 260px;
         /* box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 1),
                     inset -5px -5px -5px rgba(255, 255, 255, 1),
                     5px 5px 5px rgba(0, 0, 0, 1),
@@ -997,7 +1010,7 @@ h3{
          
         margin: auto;
         width: 330px;
-        height: 230px;
+        height: 260px;
         /* box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 1),
                     inset -5px -5px -5px rgba(255, 255, 255, 1),
                     5px 5px 5px rgba(0, 0, 0, 1),
@@ -1106,6 +1119,12 @@ h3{
     margin-left: -110px;
     
 }
+		.card-head{
+      float: left;
+      margin-bottom: 15px;
+      color: #787878;
+      font-size: 13px;
+  }
 }
 
 </style>
@@ -1301,9 +1320,17 @@ h3{
                  
                 <!-- {{!-- <div class="col-12 charboxNumo"> --}} -->
                 <div class="col-12 charbox" data-aos="fade-up">
-                    <div class="card-head fw-bold">Statistics - All Time Cases</div>
+                    <div class="card-head fw-bold mb-0">Covid-19 Statistics</div><select style="width: 120px; height: 30px; font-size: 13px; float: right; border: none; color: #787878; font-family: 'archiaregular';" id="selectoption" class="form-select doseselectbox" aria-label="Default select example">
+                        <option selected value="c">Confirmed</option>
+                        <option value="a">Active</option>
+                        <option value="r">Recovered</option>
+                        <option value="d">Deceased</option>
+                        <option value="t">PCR Tests</option>
+                        
+                      </select><br>
+                      <div class="" style="font-size: 10px; margin-bottom: -15px; float: left;"><i class='bx bx-stats'></i> New cases and deaths</div>
                     
-                <canvas id="myChart"> </canvas>
+                <div id="myChart"> </div>
                 
                 </div>
                 <!-- {{!-- </div> --}}
@@ -1399,7 +1426,8 @@ h3{
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js" integrity="sha512-NWNl2ZLgVBoi6lTcMsHgCQyrZVFnSmcaa3zRv0L3aoGXshwoxkGs3esa9zwQHsChGRL4aLDnJjJJeP6MjPX46Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+		<script>
              
 
             
@@ -1501,17 +1529,402 @@ const confirmeds = document.querySelector('.confirmeds');
 const actived = document.querySelector('.actived');
 const recovereds = document.querySelector('.recovereds');
 const deathss = document.querySelector('.deathss');
-const chart = document.querySelector('.chart');
+//const chart = document.querySelector('.chart');
 const myChart = document.querySelector('myChart');
 const vacdiv = document.querySelector('#vaccine');
 const d1value = document.getElementById("d1v");
 const d2value = document.getElementById("d2v");
 //const dssa = document.querySelector('.page');
+			
+//  CHARTAPEX START
+                    const dates = [];
+                        const confirmedcases = [];              
+                    var options = {
+                      chart: {
+                        type: "area",
+                        
+                        height: 300,
+                        zoom: {
+                          type: "x",
+                          enabled: true
+                        },
+                        toolbar: {
+                           show: false,
+                        },
+                        
+                      },
+                      responsive: [{
+                        breakpoint: 768,
+                        options: {
+                            chart: {
+                            height: 200,
+                            }
+                        },
+                    }],
+                      dataLabels: {
+                        enabled: false
+                    },
+                    stroke:{
+                        width:3
+                        ,curve:'smooth'  //(smooth , straight , stepline)
+                    },
+                    noData: {
+                    text: 'Loading Please Wait....'
+                    },
+                      series: [{
+                        name: 'Cases',
+                        data: confirmedcases
+                      }],
+                      fill: {
+                        type: "gradient",
+                        gradient: {
+                        shadeIntensity: 1,
+                        opacityFrom: 0.7,
+                        opacityTo: 0.9,
+                        stops: [0, 90, 100]
+                        }
+                    },
+                      xaxis: {
+                        categories: dates,
+                        //tickAmount: 10,
+                        tickPlacement: 'on',
+
+                            labels: {
+                                show: true,
+                                hideOverlappingLabels: true,
+                                rotate: 0,
+
+                                    style: {
+                                        
+                                        fontSize: '12px',
+                                        fontFamily: 'archiaregular',
+                                        fontWeight: 500,
+                                        cssClass: 'apexcharts-xaxis-label',
+                                        margin: 100,
+                                    },
+                                    
+
+                            },
+                        offsetX: 10,
+                        axisTicks: {
+                            
+                            offsetX: 1000,
+                            
+                        },
+                      },
+                      yaxis: {
+                        show: false,
+                       }
+                    }
+
+                    var chart = new ApexCharts(document.querySelector("#myChart"), options);
+                    
+                    
+                    chart.render();
+                    
+                    
+                    // *****--------CHARTENDS----------*****  
 
 function loader() {
     $('#ggg').hide();
         }
         window.onload = loader;
+function timeseries(){
+            fetch('https://data.covid19india.org/v4/min/timeseries.min.json')
+                     .then(e=>{return e.json();})
+                     .then(dataTS=>{
+                        console.log(dataTS);
+                        
+                        const activecases = [];
+                        const recovercases = [];
+                        const deathcases = [];
+                        const othercases = [];
+                        const dailytested = [];
+                        
+                        const propertyNames = Object.keys(dataTS["TT"].dates);
+                        const last365 = propertyNames.slice(Math.max(propertyNames.length - 365, 1));
+
+                        for (const val of last365) {
+
+                            // CONFIRED CASES
+                            if("confirmed" in dataTS["TT"].dates[val].delta){
+                            
+                            confirmedcases.push(dataTS["TT"].dates[val].delta.confirmed);
+                            
+
+                        }else{
+                            
+                            confirmedcases.push(0);
+                            
+                        }
+
+                        // DeathCases
+                        if("deceased" in dataTS["TT"].dates[val].delta){
+                            
+                            deathcases.push(dataTS["TT"].dates[val].delta.deceased);
+                            
+
+                        }else{
+                            
+                            deathcases.push(0);
+                            
+                        }
+
+                        //RECOVER
+                        if("recovered" in dataTS["TT"].dates[val].delta){
+                            
+                            recovercases.push(dataTS["TT"].dates[val].delta.recovered);
+                            
+
+                        }else{
+                            
+                            recovercases.push(0);
+                            
+                        }
+                        //Other Cases
+                        if("other" in dataTS["TT"].dates[val].delta){
+                            
+                            othercases.push(dataTS["TT"].dates[val].delta.other);
+                            
+
+                        }else{
+                            
+                            othercases.push(0);
+                            
+                        }
+
+                        //TESTED
+                        if("tested" in dataTS["TT"].dates[val].delta){
+                            dailytested.push(dataTS["TT"].dates[val].delta.tested);
+
+                        }else{
+                            
+                            dailytested.push(0);
+                            
+                        }
+
+                        //Active cases
+                        // for (const inner of confirmedcases) {
+                        activecases.push(dataTS["TT"].dates[val].delta.confirmed - (dataTS["TT"].dates[val].delta.recovered + dataTS["TT"].dates[val].delta.deceased));
+                        
+
+
+
+                        }
+                        
+                        for (let index = 0; index < last365.length; ++index) {
+                            //console.log(pio[index]);
+                            var five_date = last365[index];
+                            var dd_five_date = five_date.substring(0, 10);
+
+
+                            function formatDate(d) 
+                    {
+                    var date = new Date(d);
+
+                    if ( isNaN( date .getTime() ) ) 
+                    {
+                        return d;
+                    }
+                    else
+                    {
+                    
+                    var month = new Array();
+                    month[0] = "Jan";
+                    month[1] = "Feb";
+                    month[2] = "Mar";
+                    month[3] = "Apr";
+                    month[4] = "May";
+                    month[5] = "Jun";
+                    month[6] = "Jul";
+                    month[7] = "Aug";
+                    month[8] = "Sept";
+                    month[9] = "Oct";
+                    month[10] = "Nov";
+                    month[11] = "Dec";
+
+                    var day = date.getDate();
+                    
+                    if(day < 10)
+                    {
+                        day = "0"+day;
+                    }
+                    
+                    return    day  + " " +month[date.getMonth()] + " " + date.getFullYear();
+                    }
+                        
+                    }
+                    var date_response = formatDate(dd_five_date);
+                    dates.push(date_response.substring(0, 6));
+                    
+                    
+                        }
+                       
+                        console.log(dates);
+
+
+                        chart.updateSeries([{
+                        name: 'Confirmed Cases',
+                        data: confirmedcases
+                    
+                        }]);
+
+                        chart.updateOptions({
+                        xaxis: {
+                            categories: dates,
+                            tickAmount: 3,
+                            offsetX: 5,
+                            tickPlacement: 'on',
+                            
+                            
+                        },
+                        fill: {
+                        colors: ['#ff073a']
+                        },
+                        colors: ['#ff073a']
+                        });
+                        document.getElementById('selectoption').addEventListener("change", function(){
+                            if(document.getElementById('selectoption').value == "c") {
+
+                                chart.updateSeries([{
+                                name: 'Confirmed Cases',
+                                data: confirmedcases,
+                                
+                                }]);
+
+                                chart.updateOptions({
+                                    animate:true,
+                                xaxis: {
+                                    categories: dates,
+                                    tickAmount: 3,
+                                    offsetX: 5,
+                                    tickPlacement: 'on',
+                                 },
+                                 
+                                fill: {
+                                colors: ['#ff073a']
+                                },
+                                colors: ['#ff073a']
+                                });
+                            }
+
+
+                        });
+
+
+                        document.getElementById('selectoption').addEventListener("change", function(){
+                            if(document.getElementById('selectoption').value == "a") {
+
+                                chart.updateSeries([{
+                                name: 'Active Cases',
+                                data: activecases,
+                                
+                                }]);
+
+                                chart.updateOptions({
+                                    animate:true,
+                                xaxis: {
+                                    categories: dates,
+                                    tickAmount: 3,
+                                    offsetX: 5,
+                                    tickPlacement: 'on',    
+                                },
+                                fill: {
+                                colors: ['#007bff']
+                                },
+                                
+                                colors: ['#007bff']
+                                });
+                            }
+
+
+                        });
+
+
+                        document.getElementById('selectoption').addEventListener("change", function(){
+                            if(document.getElementById('selectoption').value == "r") {
+
+                                chart.updateSeries([{
+                                name: 'Recovered Cases',
+                                data: recovercases
+                                }]);
+
+                                chart.updateOptions({
+                                    animate:true,
+                                xaxis: {
+                                    categories: dates,
+                                    tickAmount: 3,
+                                    offsetX: 5,
+                                    tickPlacement: 'on',  
+                                },
+                                fill: {
+                                colors: ['#28a745']
+                                },
+                                colors: ['#28a745']
+                                });
+                            }else if(document.getElementById('selectoption').value == "d"){
+                                chart.updateSeries([{
+                                name: 'Deceased Cases',
+                                data: deathcases
+                                }]);
+
+                                chart.updateOptions({
+                                    animate:true,
+                                xaxis: {
+                                    categories: dates,
+                                    tickAmount: 3,
+                                    offsetX: 5,
+                                    tickPlacement: 'on',
+                                    
+                                    
+                                },
+                                
+                                fill: {
+                                colors: ['#6c757d']
+                                },
+                                colors: ['#6c757d']
+                                });
+                            }
+
+
+                        });
+
+                        document.getElementById('selectoption').addEventListener("change", function(){
+                            if(document.getElementById('selectoption').value == "t") {
+
+                                chart.updateSeries([{
+                                name: 'RT-PCR Tests',
+                                data: dailytested,
+                                
+                                }]);
+
+                                chart.updateOptions({
+                                    animate:true,
+                                xaxis: {
+                                    categories: dates,
+                                    tickAmount: 3,
+                                    offsetX: 5,
+                                    tickPlacement: 'on',    
+                                },
+                                fill: {
+                                colors: ['rgba(32,26,162,.8666666666666667)']
+                                },
+                                
+                                colors: ['rgba(32,26,162,.8666666666666667)']
+                                });
+                            }
+
+
+                        });
+
+
+                        console.log(dailytested);
+                        //console.log(last365);
+                        //console.log(confirmedcases);
+                        
+                     });
+        }
+        timeseries();
 function trytest(){
     $('#ggg').show();
     fetch('https://data.covid19india.org/v4/min/data.min.json')
@@ -1735,183 +2148,183 @@ C.push(Math.abs(tconfirm[i] - trec[i]));
 
 
 //chART
-    const ctx = document.getElementById("myChart").getContext('2d')
-    //newly added for gradient
-    const gradient = ctx.createLinearGradient(0, 0, 0, 450);
-    const gradient1 = ctx.createLinearGradient(0, 0, 0, 450);
-    const gradient2 = ctx.createLinearGradient(0, 0, 0, 450);
-    const gradient3 = ctx.createLinearGradient(0, 0, 0, 450);
-     gradient.addColorStop(0, 'rgba(255, 0, 0, 0.7)');
-     gradient.addColorStop(0.5, 'rgba(255, 0, 0, 0.5)');
-     gradient.addColorStop(1, 'rgba(255, 0, 0, 0.3)');
+    // const ctx = document.getElementById("myChart").getContext('2d')
+    // //newly added for gradient
+    // const gradient = ctx.createLinearGradient(0, 0, 0, 450);
+    // const gradient1 = ctx.createLinearGradient(0, 0, 0, 450);
+    // const gradient2 = ctx.createLinearGradient(0, 0, 0, 450);
+    // const gradient3 = ctx.createLinearGradient(0, 0, 0, 450);
+    //  gradient.addColorStop(0, 'rgba(255, 0, 0, 0.7)');
+    //  gradient.addColorStop(0.5, 'rgba(255, 0, 0, 0.5)');
+    //  gradient.addColorStop(1, 'rgba(255, 0, 0, 0.3)');
 
-     gradient1.addColorStop(0, 'rgba(0, 0, 255, 0.7)');
-     gradient1.addColorStop(0.5, 'rgba(0, 0, 255, 0.5)');
-     gradient1.addColorStop(1, 'rgba(0, 0, 255, 0.3)');
+    //  gradient1.addColorStop(0, 'rgba(0, 0, 255, 0.7)');
+    //  gradient1.addColorStop(0.5, 'rgba(0, 0, 255, 0.5)');
+    //  gradient1.addColorStop(1, 'rgba(0, 0, 255, 0.3)');
 
-     gradient2.addColorStop(0, 'rgba(0, 255, 0, 0.55)');
-     gradient2.addColorStop(0.5, 'rgba(0, 255, 0, 0.30)');
-     gradient2.addColorStop(1, 'rgba(0, 255, 0, 0.20)');
+    //  gradient2.addColorStop(0, 'rgba(0, 255, 0, 0.55)');
+    //  gradient2.addColorStop(0.5, 'rgba(0, 255, 0, 0.30)');
+    //  gradient2.addColorStop(1, 'rgba(0, 255, 0, 0.20)');
 
-     gradient3.addColorStop(0, 'rgba(0, 0, 0, 0.22)');
-     gradient3.addColorStop(0.5, 'rgba(0, 0, 0, 0.16)');
-     gradient3.addColorStop(1, 'rgba(0, 0, 0, 0.11)');
+    //  gradient3.addColorStop(0, 'rgba(0, 0, 0, 0.22)');
+    //  gradient3.addColorStop(0.5, 'rgba(0, 0, 0, 0.16)');
+    //  gradient3.addColorStop(1, 'rgba(0, 0, 0, 0.11)');
 
-    const myChart = new Chart(ctx, {
-        type: "line",
-        data:{
-            labels:time,
-            datasets: [
-            {
-                label: "Confirmed Cases",
-                data: allconfirmed,
-                backgroundColor:  gradient, //added
-                minBarLength: 100,
-                fill: true,
-                borderWidth: 2,
-                pointRadius: 0.5,
-                tension: 1
-
-
-            },
-            {
-                label: "Active",
-                data: act,
-                backgroundColor: gradient1,
-                minBarLength: 100,
-                fill: true,
-                borderWidth: 2,
-                pointRadius: 0.5,
-                tension: 1
+                    // const myChart = new Chart(ctx, {
+                    //     type: "line",
+                    //     data:{
+                    //         labels:time,
+                    //         datasets: [
+                    //         {
+                    //             label: "Confirmed Cases",
+                    //             data: allconfirmed,
+                    //             backgroundColor:  gradient, //added
+                    //             minBarLength: 100,
+                    //             fill: true,
+                    //             borderWidth: 2,
+                    //             pointRadius: 0.5,
+                    //             tension: 1
 
 
-            },
-           {
-                label: "Recoverd Cases",
-                data: allrec,
-                backgroundColor: gradient2,
-                minBarLength: 100,
-                fill: true,
-                borderWidth: 2,
-                pointRadius: 0.5,
-                tension: 1
+                    //         },
+                    //         {
+                    //             label: "Active",
+                    //             data: act,
+                    //             backgroundColor: gradient1,
+                    //             minBarLength: 100,
+                    //             fill: true,
+                    //             borderWidth: 2,
+                    //             pointRadius: 0.5,
+                    //             tension: 1
 
 
-            },
-            {
-                label: "Total Deaths",
-                data: alldied,
-                backgroundColor: gradient3,
-                minBarLength: 100,
-                fill: true,
-                borderWidth: 2,
-                pointRadius: 0.5,
-                tension: 1
+                    //         },
+                    //     {
+                    //             label: "Recoverd Cases",
+                    //             data: allrec,
+                    //             backgroundColor: gradient2,
+                    //             minBarLength: 100,
+                    //             fill: true,
+                    //             borderWidth: 2,
+                    //             pointRadius: 0.5,
+                    //             tension: 1
 
 
-            },
+                    //         },
+                    //         {
+                    //             label: "Total Deaths",
+                    //             data: alldied,
+                    //             backgroundColor: gradient3,
+                    //             minBarLength: 100,
+                    //             fill: true,
+                    //             borderWidth: 2,
+                    //             pointRadius: 0.5,
+                    //             tension: 1
 
-            ]
-        },
-         options: {
-             responsive: true,
-             animation: {
-                duration: 500,
-                easing: 'easeInOutQuad',
-            },
-             plugins: {
-                 legend: {
-                     display: false
-                 }
 
-             },
-             
-             scales: {
-                 
-                    y: {
-                        grid: {
-                            display:false
-                        },
-                        ticks: {
-                            callback: function(value){
-                                const valueLegend = this.getLabelForValue(value);
-                                const valueLegendRep = valueLegend.replaceAll(',', '');
-                                if (valueLegendRep.length === 1){
-                                    return valueLegendRep;
-                                }
-                                 if (valueLegendRep.length === 4){
-                                    return valueLegendRep.substr(0,1) + 'K';
-                                }
-                                if (valueLegendRep.length === 6){
-                                    return valueLegendRep.substr(0,3) + 'K';
-                                }
-                                if (valueLegendRep.length === 7){
-                                    return valueLegendRep.substr(0,4) + 'K';
-                                }
-                            }
-                        }
-                    },
-                    x: {
-                        grid: {
-                            display:false
-                        },
-                        ticks: {
+                    //         },
+
+                    //         ]
+                    //     },
+                    //     options: {
+                    //         responsive: true,
+                    //         animation: {
+                    //             duration: 500,
+                    //             easing: 'easeInOutQuad',
+                    //         },
+                    //         plugins: {
+                    //             legend: {
+                    //                 display: false
+                    //             }
+
+                    //         },
                             
-                            maxTicksLimit: 7,
-                            maxRotation: 0,
-                            callback: function(value){
-                                return this.getLabelForValue(value).substr(0,6);
-                            }
-                        }
-                    }
-                }
-            
-        
-            }
-            
-        
-    });
-    document.getElementById ("confirmed").addEventListener ("click", myFunction, false);
+                    //         scales: {
+                                
+                    //                 y: {
+                    //                     grid: {
+                    //                         display:false
+                    //                     },
+                    //                     ticks: {
+                    //                         callback: function(value){
+                    //                             const valueLegend = this.getLabelForValue(value);
+                    //                             const valueLegendRep = valueLegend.replaceAll(',', '');
+                    //                             if (valueLegendRep.length === 1){
+                    //                                 return valueLegendRep;
+                    //                             }
+                    //                             if (valueLegendRep.length === 4){
+                    //                                 return valueLegendRep.substr(0,1) + 'K';
+                    //                             }
+                    //                             if (valueLegendRep.length === 6){
+                    //                                 return valueLegendRep.substr(0,3) + 'K';
+                    //                             }
+                    //                             if (valueLegendRep.length === 7){
+                    //                                 return valueLegendRep.substr(0,4) + 'K';
+                    //                             }
+                    //                         }
+                    //                     }
+                    //                 },
+                    //                 x: {
+                    //                     grid: {
+                    //                         display:false
+                    //                     },
+                    //                     ticks: {
+                                            
+                    //                         maxTicksLimit: 7,
+                    //                         maxRotation: 0,
+                    //                         callback: function(value){
+                    //                             return this.getLabelForValue(value).substr(0,6);
+                    //                         }
+                    //                     }
+                    //                 }
+                    //             }
+                            
+                        
+                    //         }
+                            
+                        
+                    // });
+                    // document.getElementById ("confirmed").addEventListener ("click", myFunction, false);
 
-    function myFunction() {
-       
-      myChart.show(0);
-       myChart.hide(1);
-      myChart.hide(2);
-      myChart.hide(3);
+                    // function myFunction() {
+                    
+                    // myChart.show(0);
+                    // myChart.hide(1);
+                    // myChart.hide(2);
+                    // myChart.hide(3);
 
-    }
-    document.getElementById ("active").addEventListener ("click", myFunctiona, false);
+                    // }
+                    // document.getElementById ("active").addEventListener ("click", myFunctiona, false);
 
-    function myFunctiona() {
-         
-      myChart.show(1);
-      myChart.hide(0);
-      myChart.hide(2);
-      myChart.hide(3);
+                    // function myFunctiona() {
+                        
+                    // myChart.show(1);
+                    // myChart.hide(0);
+                    // myChart.hide(2);
+                    // myChart.hide(3);
 
-    }
-     document.getElementById ("recover").addEventListener ("click", myFunctionr, false);
+                    // }
+                    // document.getElementById ("recover").addEventListener ("click", myFunctionr, false);
 
-    function myFunctionr() {
-          
-      myChart.show(2);
-      myChart.hide(0);
-      myChart.hide(1);
-      myChart.hide(3);
+                    // function myFunctionr() {
+                        
+                    // myChart.show(2);
+                    // myChart.hide(0);
+                    // myChart.hide(1);
+                    // myChart.hide(3);
 
-    }
+                    // }
 
-     document.getElementById ("dieds").addEventListener ("click", myFunctiond, false);
+                    // document.getElementById ("dieds").addEventListener ("click", myFunctiond, false);
 
-    function myFunctiond() {
-         
-      myChart.show(3);
-      myChart.hide(0);
-      myChart.hide(1);
-      myChart.hide(2);
+                    // function myFunctiond() {
+                        
+                    // myChart.show(3);
+                    // myChart.hide(0);
+                    // myChart.hide(1);
+                    // myChart.hide(2);
 
-    }
+                    // }
     
     
 
