@@ -2367,13 +2367,13 @@ function trytest(){
                                             if ("delta" in data_delta[okok]) {
 
                                                 if ("confirmed" in data_delta[okok].delta) {
-                                                    c[valuo] = "🡩 " + data_delta[okok].delta.confirmed;
+                                                    c[valuo] = "⮬ " + data_delta[okok].delta.confirmed;
                                                 } else {
                                                     c[valuo] = "-";
                                                 }
 
                                                 if ("recovered" in data_delta[okok].delta) {
-                                                    r[valuo] = "🡩 " + data_delta[okok].delta.recovered;
+                                                    r[valuo] = "⮬ " + data_delta[okok].delta.recovered;
                                                 } else {
                                                     r[valuo] = "-";
                                                 }
@@ -2391,9 +2391,9 @@ function trytest(){
                                                     a[valuo] = "-";
                                                 } else {
                                                     if (neg_active >= 0) {
-                                                        a[valuo] = "🡩 " + neg_active;
+                                                        a[valuo] = "⮬ " + neg_active;
                                                     } else {
-                                                        a[valuo] = "🡫 " + Math.abs(neg_active);
+                                                        a[valuo] = "⮮ " + Math.abs(neg_active);
                                                     }
                                                 }
 
